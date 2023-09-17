@@ -9,7 +9,7 @@
 - Users should be able to normalize data through the provided StandardScaler() from Scikit-Learn 
 - Users are able to drop null values through .dropna()
 - Allow users to select which attributes they want to use. Whether it be all attributes or maybe a select amount
-- Implement add an average value imputer to fill in the gaps of missing values (optional)
+- Implement an average value imputer to fill in the gaps of missing values (optional)
 
 ## Data Visualizations
 - Create graphs showing the attributes to interpret attribute influence
