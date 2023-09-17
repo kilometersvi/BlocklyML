@@ -2,8 +2,11 @@
 
 ## Names of Group Members
 Evelyn Lawrie
+
 Alex Rea
+
 Chris Ton-That
+
 Minna Yu
 
 ## Motivation and Description
