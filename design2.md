@@ -3,6 +3,7 @@
 ## Input Data
 Load the dataset into a DataFrame using Pandas
 
+
 import pandas as pd
 
 Dataframe = pd.read_csv(‘filename.csv’)
@@ -13,6 +14,8 @@ Standardize (z-score) or normalize (min-max scaling) numerical features
 
 ### Step 2: Handling Missing Values
 Identify and handle missing values
+
+
 data.dropna()
 
 ### Step 3: Selecting features 
