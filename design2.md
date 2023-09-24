@@ -52,7 +52,7 @@ linearReg = LinearRegression()
 logisticReg = LogisticRegression()
 
 ## Model Training
-Train the model using the fit function on the training data
+Train the model using the fit function on the training data.
 Examples of model training:
 
 logisticReg.fit(X_train, y_train)
