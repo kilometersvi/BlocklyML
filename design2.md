@@ -45,8 +45,7 @@ Test_Data = X_test, y_test
 return [`Train_Data, Test_Data`]
 
 ## Model Selection
-This block allows users to select between various classification and regression models 
-Examples of model instantiation: 
+This block allows users to select between various classification and regression models. Examples of model instantiation: 
 
 linearReg = LinearRegression()
 logisticReg = LogisticRegression()
