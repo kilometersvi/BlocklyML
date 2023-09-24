@@ -1,7 +1,7 @@
 # Block Execution
 
 ## Input Data
-Load the dataset into a DataFrame using Pandas
+Load the dataset into a DataFrame using Pandas\
 import pandas as pd
 Dataframe = pd.read_csv(‘filename.csv’)
 
@@ -14,11 +14,11 @@ Identify and handle missing values
 data.dropna()
 
 ### Step 3: Selecting features 
-Select the columns the user wants to use for training the model
+Select the columns the user wants to use for training the model\
 Data = data.loc[list_of_selected]
 
 ## Data Visualizations 
-Outputs a graph, given the options of a scatterplot, bar graph, and correlation heatmap. Below is an example of code to generate a data visualization using ggplot: 
+Outputs a graph, given the options of a scatterplot, bar graph, and correlation heatmap. Below is an example of code to generate a data visualization using ggplot:\
 (ggplot(input_data, aes(x = "x_axis_data", y = "y_axis_data")) + geom_point() + theme_bw() + geom_smooth(method = "lm", color = "red") + 
 labs(title="x data Vs. Y data", x = "x_axis_data", y = "y_axis_data"))
 
@@ -26,8 +26,7 @@ labs(title="x data Vs. Y data", x = "x_axis_data", y = "y_axis_data"))
 Below is an example of the functionality implemented by a block to split the data into a training set and testing set:
 
 ### Split the data into training and testing sets
-from sklearn.model_selection import train_test_split
-
+from sklearn.model_selection import train_test_split\
 X_train, X_test, y_train, y_test = train_test_split(${dataInput}, test_size=${testSize})
 
 ### Output the training and testing datasets
@@ -38,6 +37,7 @@ return [`Train_Data, Test_Data`]
 ## Model Selection
 This block allows users to select between various classification and regression models 
 Examples of model instantiation: 
+
 linearReg = LinearRegression()
 logisticReg = LogisticRegression()
 
