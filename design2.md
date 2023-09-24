@@ -74,27 +74,30 @@ learning_rate=0.05)
 ## Model Evaluation
 There are many different ways to evaluate a model's performance below are a few methods we will implement:
 
-### Regression: Accuracy Score
+### Regression: MSE or R2
+Users will be able to decide between MSE and R2 methods of evaluation for continuous models.
+
+For any regression model, mean squared error (MSE) is a great way to see how far your model is predicting from the actual observed data. 
+
+mse_for_test_set = mean_squared_error(y_test, predictions_using_test)
+
+Linear regression models can be assessed with an R2 score to see how well dependent variable is explained by the dependent variables. Essentially, it’s a score to see how appropriate the predictions are to the true observed data. 
+
+r2_score_for_test_set = r2_score(y_test, predictions_using_test)
+
+### Classification: Accuracy Score or Confusion Matrix
+Users will be able to decide between implementing accuracy score or a confusion matrix for classification models.
+
 Accuracy score is a proportion of accurate predictions to not accurate predictions. It’s basically a percentage of how many times it correctly classifies a data point. 
 
 accuracy_score(y_test,logitReg.predict(X_test))
 
-For any regression model, mean squared error is a great way to see how far your model is predicting from the actual observed data. 
-
-mse_for_test_set = mean_squared_error(y_test, predictions_using_test)
-
-Linear regression models can be assessed with an r2 score to see how well dependent variable is explained by the dependent variables. Essentially, it’s a score to see how appropriate the predictions are to the true observed data. 
-
-r2_score_for_test_set = r2_score(y_test, predictions_using_test)
-
-### Classification: Confusion Matrix
 A confusion matrix is a visual representation of true positives, false positives, true negatives, and false negatives. They can show you exactly what types of predictions are more frequently made by your classification model. 
 
 ConfusionMatrixDisplay.from_predictions(y_test, logisticRegression.predict(x_test))
 
 # Recursive Use Case 
 Decision Trees will be one of the classification models available in BlocklyML. Constructing this type of model involves having it make certain types of decisions then recursively apply the decision-making process on the data. The base case for a recursive Blockly program that implements constructing a Decision Tree would be stopping when the maximum depth of the tree is reached, all samples in a node belong to the same class, or if there are no splits left to be made. For the recursive step, reduce the depth and apply the split based on the decision-making criteria, then recursively call the function on the reduced depth. Implementing this in Blockly would demonstrate a modular approach in creating a complex model with simple blocks. It would look like Node or Decision_Tree blocks wrapped within a Decision_Tree block which the user can infinitely build upon.
-
 
 # Data and Interaction
 
