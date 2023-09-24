@@ -16,6 +16,8 @@ Standardize (z-score) or normalize (min-max scaling) numerical features
 Identify and handle missing values
 
 
+
+
 data.dropna()
 
 ### Step 3: Selecting features 
