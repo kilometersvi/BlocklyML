@@ -105,12 +105,21 @@ The user can provide the data using a CSV file, formatted such as this:
 
 
 HoursStudied, ExamScore
+
 2, 85
+
 3, 92
+
 1.5, 60
+
 4, 94
+
 5, 98
+
 2.5, 75
+
 1, 45
+
 3.5, 88
+
 4.5, 92
