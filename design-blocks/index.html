@@ -1,40 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blockly Example</title>
+    <title>BlocklyML</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="custom_blocks.js"></script>
+    <!-- <script src="custom_blocks.js"></script> -->
 </head>
 <body>
-    <h1>Blockly Toolbox Example</h1>
+    <h1>Blockly ML</h1>
     <xml id="toolbox" style="display: none">
-        <category name="Logic" colour="210">
-            <block type="controls_if"></block>
+        <category name="Input Data" colour="210">
+            <block type="read_csv"></block>
             <block type="logic_compare"></block>
             <!-- Add more blocks here -->
         </category>
-        <category name="Math" colour="230">
+        <category name="Clean Data" colour="230">
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
             <!-- Add more blocks here -->
         </category>
-        <!-- Add more categories here -->
+        <category name="Data Visualizations" colour="250">
+        </category>
+        <category name="Train/Test Split" colour="280">
+        </category>
+        <category name="Model Selection" colour="310">
+        </category>
+        <category name="Model Training" colour="340">
+        </category>
+        <category name="Hyperparameter Tuning" colour="370">
+        </category>
+        <category name="Model Evaluation" colour="400">
+        </category>
     </xml>
         <!-- Blockly workspace will go here -->
-    <h1>Blockly Example</h1>
-    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div> <!-- Blockly workspace container -->
-    
+    <div id="blocklyDiv" style="height: 700px; width: 1200px;"></div> <!-- Blockly workspace container -->
+    <!-- s -->
     <script>
         // Initialize Blockly
         var workspace = Blockly.inject('blocklyDiv', {
             toolbox: document.getElementById('toolbox'), // Optional toolbox configuration
         });
 
-        // Define custom blocks (if needed)
-        // ...
+        // Define custom blocks
+        // Define a custom block for reading CSV data
+        Blockly.Blocks['read_csv'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Read CSV from File")
+                .appendField(new Blockly.FieldTextInput("sample.csv"), "FILENAME");
+            this.setOutput(true, "Array");
+            this.setColour(230);
+            this.setTooltip("Read CSV data from a file.");
+            this.setHelpUrl("");
+        }
+        };
+        // // Simulate reading a CSV file (you'd need a real implementation here)
+        // var csvData = "Name,Age,Location\nJohn,30,New York\nAlice,25,Los Angeles";
+
+        // // Parse the CSV data into an array (you'd need a more robust parser)
+        // var rows = csvData.split('\n');
+        // var header = rows[0].split(',');
+        // var data = [];
+
+        // for (var i = 1; i < rows.length; i++) {
+        //     var row = rows[i].split(',');
+        //     var rowData = {};
+        // for (var j = 0; j < header.length; j++) {
+        //     rowData[header[j]] = row[j];
+        // }
+        // data.push(rowData);
+        // }
+
+        // // Return the CSV data as a JavaScript array
+        // var code = JSON.stringify(data);
+        // return [code, Blockly.JavaScript.ORDER_ATOMIC];
 
         // Interact with Blockly (e.g., run code)
-        // ...
     </script>
 </body>
 </html>
