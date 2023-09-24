@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockly Example</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="custom_blocks.js"></script>
+</head>
+<body>
+    <h1>Blockly Toolbox Example</h1>
+    <xml id="toolbox" style="display: none">
+        <category name="Logic" colour="210">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <!-- Add more blocks here -->
+        </category>
+        <category name="Math" colour="230">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <!-- Add more blocks here -->
+        </category>
+        <!-- Add more categories here -->
+    </xml>
+        <!-- Blockly workspace will go here -->
+    <h1>Blockly Example</h1>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div> <!-- Blockly workspace container -->
+    
+    <script>
+        // Initialize Blockly
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox'), // Optional toolbox configuration
+        });
+
+        // Define custom blocks (if needed)
+        // ...
+
+        // Interact with Blockly (e.g., run code)
+        // ...
+    </script>
+</body>
+</html>
