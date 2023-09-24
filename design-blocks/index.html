@@ -10,25 +10,34 @@
     <xml id="toolbox" style="display: none">
         <category name="Input Data" colour="210">
             <block type="read_csv"></block>
-            <block type="logic_compare"></block>
-            <!-- Add more blocks here -->
+            <block type="print_data"></block>
         </category>
-        <category name="Clean Data" colour="230">
-            <block type="math_number"></block>
-            <block type="math_arithmetic"></block>
-            <!-- Add more blocks here -->
+        <category name="Clean Data" colour="240">
+            <block type="normalize_data"></block>
+            <block type="drop_nulls"></block>
+            <block type="attribute_selection"></block>
         </category>
-        <category name="Data Visualizations" colour="250">
+        <category name="Data Visualizations" colour="270">
+            <block type="scatterplot"></block>
+            <block type="bar_chart"></block>
+            <block type="correlation_heatmap"></block>
         </category>
-        <category name="Train/Test Split" colour="280">
+        <category name="Train/Test Split" colour="300">
+            <block type="train_test_split"></block>
         </category>
-        <category name="Model Selection" colour="310">
+        <category name="Model Selection" colour="330">
+            <block type="choose_regression_model"></block>
+            <block type="choose_classification_model"></block>
         </category>
-        <category name="Model Training" colour="340">
+        <category name="Model Training" colour="360">
+            <block type="train_model"></block>
         </category>
-        <category name="Hyperparameter Tuning" colour="370">
+        <category name="Hyperparameter Tuning" colour="380">
+            <block type="hyperparameter_tuning"></block>
         </category>
-        <category name="Model Evaluation" colour="400">
+        <category name="Model Evaluation" colour="410">
+            <block type="evaluate_regression_model"></block>
+            <block type="evaluate_classification_model"></block>
         </category>
     </xml>
         <!-- Blockly workspace will go here -->
@@ -45,36 +54,253 @@
         Blockly.Blocks['read_csv'] = {
         init: function () {
             this.appendDummyInput()
-                .appendField("Read CSV from File")
+                .appendField("Read CSV from file")
                 .appendField(new Blockly.FieldTextInput("sample.csv"), "FILENAME");
             this.setOutput(true, "Array");
-            this.setColour(230);
+            this.setColour(210);
             this.setTooltip("Read CSV data from a file.");
             this.setHelpUrl("");
         }
         };
-        // // Simulate reading a CSV file (you'd need a real implementation here)
-        // var csvData = "Name,Age,Location\nJohn,30,New York\nAlice,25,Los Angeles";
 
-        // // Parse the CSV data into an array (you'd need a more robust parser)
-        // var rows = csvData.split('\n');
-        // var header = rows[0].split(',');
-        // var data = [];
+        // Define a custom block for printing CSV data
+        Blockly.Blocks['print_data'] = {
+        init: function () {
+            this.appendValueInput("CSV_DATA")
+                .setCheck("Array")
+                .appendField("Print CSV Data");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(210);
+            this.setTooltip("Print the loaded CSV data.");
+            this.setHelpUrl("");
+        }
+        };
 
-        // for (var i = 1; i < rows.length; i++) {
-        //     var row = rows[i].split(',');
-        //     var rowData = {};
-        // for (var j = 0; j < header.length; j++) {
-        //     rowData[header[j]] = row[j];
-        // }
-        // data.push(rowData);
-        // }
+        // Define a custom block for data normalization
+        Blockly.Blocks['normalize_data'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Normalize Data");
+            this.setOutput(true, "Array");
+            this.setColour(240);
+            this.setTooltip("Normalize the input data between 0 and 1.");
+            this.setHelpUrl("");
+        }
+        };
 
-        // // Return the CSV data as a JavaScript array
-        // var code = JSON.stringify(data);
-        // return [code, Blockly.JavaScript.ORDER_ATOMIC];
+        // Define a custom block to drop null values from an array
+        Blockly.Blocks['drop_nulls'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Drop Null Values from Array");
+            this.setOutput(true, "Array");
+            this.setColour(240);
+            this.setTooltip("Remove null (missing) values from the input array.");
+            this.setHelpUrl("");
+        }
+        };
 
-        // Interact with Blockly (e.g., run code)
+        // Define a custom block for selecting attributes
+        Blockly.Blocks['attribute_selection'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Select Attributes from Array");
+            this.appendDummyInput()
+                .appendField("Attributes:")
+                .appendField(new Blockly.FieldTextInput("attr1,attr2"), "SELECTED_ATTRIBUTES");
+            this.setOutput(true, "Array");
+            this.setColour(240);
+            this.setTooltip("Select specific attributes from the input array.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for creating a scatterplot
+        Blockly.Blocks['scatterplot'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Create Scatterplot");
+            this.appendDummyInput()
+                .appendField("X-Axis:")
+                .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
+            this.appendDummyInput()
+                .appendField("Y-Axis:")
+                .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(270);
+            this.setTooltip("Create a scatterplot from the input data.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for creating a bar chart
+        Blockly.Blocks['bar_chart'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Create Bar Chart");
+            this.appendDummyInput()
+                .appendField("X-Axis:")
+                .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
+            this.appendDummyInput()
+                .appendField("Y-Axis:")
+                .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(270);
+            this.setTooltip("Create a bar chart from the input data.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for creating a correlation heatmap
+        Blockly.Blocks['correlation_heatmap'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Create Correlation Heatmap");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(270);
+            this.setTooltip("Create a correlation heatmap from the input data.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for train-test split
+        Blockly.Blocks['train_test_split'] = {
+        init: function () {
+            this.appendValueInput("DATA")
+                .setCheck("Array")
+                .appendField("Train-Test Split");
+            this.appendDummyInput()
+                .appendField("Train Ratio:")
+                .appendField(new Blockly.FieldDropdown([
+                ["70%", "0.7"],
+                ["75%", "0.75"],
+                ["80%", "0.8"]
+                ]), "TRAIN_RATIO");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(300);
+            this.setTooltip("Split the input data into training and testing sets.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for choosing a regression model
+        Blockly.Blocks['choose_regression_model'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Choose Regression Model:")
+                .appendField(new Blockly.FieldDropdown([
+                ["Linear Regression", "linear"],
+                ["Regression Trees", "trees"],
+                ["Random Forest", "forest"],
+                ["XGBoost", "xgboost"]
+                ]), "REGRESSION_MODEL");
+            this.setOutput(true, "String");
+            this.setColour(330);
+            this.setTooltip("Select a regression model for your machine learning task.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for choosing a classification model
+        Blockly.Blocks['choose_classification_model'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Choose Classification Model:")
+                .appendField(new Blockly.FieldDropdown([
+                ["Logistic Regression", "logistic"],
+                ["K-Nearest Neighbors", "knn"],
+                ["Decision Trees", "trees"],
+                ["Random Forest", "forest"],
+                ["XGBoost", "xgboost"]
+                ]), "CLASSIFICATION_MODEL");
+            this.setOutput(true, "String");
+            this.setColour(330);
+            this.setTooltip("Select a classification model for your machine learning task.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for training a machine learning model
+        Blockly.Blocks['train_model'] = {
+        init: function () {
+            this.appendValueInput("MODEL")
+                .setCheck("String")
+                .appendField("Train Model");
+            this.appendValueInput("TRAIN_DATA")
+                .setCheck("Array")
+                .appendField("Training Data");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(360);
+            this.setTooltip("Train a selected machine learning model with the provided training data.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for hyperparameter tuning using GridSearchCV
+        Blockly.Blocks['hyperparameter_tuning'] = {
+        init: function () {
+            this.appendValueInput("MODEL")
+                .setCheck("String")
+                .appendField("Hyperparameter Tuning with GridSearchCV");
+            this.appendStatementInput("HYPERPARAMETERS")
+                .setCheck(null)
+                .appendField("Hyperparameters:");
+            this.appendValueInput("TRAIN_DATA")
+                .setCheck("Array")
+                .appendField("Training Data");
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(30);
+            this.setTooltip("Tune the hyperparameters of a machine learning model using GridSearchCV.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for evaluating a continuous model using R-squared
+        Blockly.Blocks['evaluate_regression_model'] = {
+        init: function () {
+            this.appendValueInput("MODEL")
+                .setCheck("String")
+                .appendField("Evaluate Regression Model");
+            this.appendValueInput("TEST_DATA")
+                .setCheck("Array")
+                .appendField("Test Data");
+            this.setOutput(true, "Number");
+            this.setColour(55);
+            this.setTooltip("Evaluate a regression model using the R-squared metric and output the result.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define a custom block for evaluating a classification model using a confusion matrix
+        Blockly.Blocks['evaluate_classification_model'] = {
+        init: function () {
+            this.appendValueInput("MODEL")
+                .setCheck("String")
+                .appendField("Evaluate Classification Model");
+            this.appendValueInput("TEST_DATA")
+                .setCheck("Array")
+                .appendField("Test Data");
+            this.setColour(55);
+            this.setOutput(true, "String");
+            this.setTooltip("Evaluate a classification model using a confusion matrix and output the results.");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Interact with Blockly (e.g., run code) --> future implementation 
     </script>
 </body>
 </html>
