@@ -48,6 +48,7 @@ return [`Train_Data, Test_Data`]
 This block allows users to select between various classification and regression models. Examples of model instantiation: 
 
 linearReg = LinearRegression()
+
 logisticReg = LogisticRegression()
 
 ## Model Training
@@ -55,6 +56,7 @@ Train the model using the fit function on the training data
 Examples of model training:
 
 logisticReg.fit(X_train, y_train)
+
 linearReg.fit(X_train, y_train)
 
 ## Hyperparameter Tuning
