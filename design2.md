@@ -3,6 +3,7 @@
 ## Input Data
 Load the dataset into a DataFrame using Pandas
 import pandas as pd
+
 Dataframe = pd.read_csv(‘filename.csv’)
 
 ## Clean Data
