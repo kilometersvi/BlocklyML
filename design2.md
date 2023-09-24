@@ -18,7 +18,8 @@ Select the columns the user wants to use for training the model\
 Data = data.loc[list_of_selected]
 
 ## Data Visualizations 
-Outputs a graph, given the options of a scatterplot, bar graph, and correlation heatmap. Below is an example of code to generate a data visualization using ggplot:\
+Outputs a graph, given the options of a scatterplot, bar graph, and correlation heatmap. Below is an example of code to generate a data visualization using ggplot:
+
 (ggplot(input_data, aes(x = "x_axis_data", y = "y_axis_data")) + geom_point() + theme_bw() + geom_smooth(method = "lm", color = "red") + 
 labs(title="x data Vs. Y data", x = "x_axis_data", y = "y_axis_data"))
 
