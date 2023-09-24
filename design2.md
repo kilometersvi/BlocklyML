@@ -60,7 +60,7 @@ logisticReg.fit(X_train, y_train)
 linearReg.fit(X_train, y_train)
 
 ## Hyperparameter Tuning
-Gives users the option to manually change values of the hyperparameters they choose for the given mode
+Gives users the option to manually change values of the hyperparameters they choose for the given mode.
 This is an example of selecting specific hyperparameters for a model:
 
 xgbReg = xgb.XGBRegressor(
