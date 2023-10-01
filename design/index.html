@@ -127,8 +127,9 @@
             var csv_file = Blockly.JavaScript.valueToCode(block, 'csv_file', Blockly.JavaScript.ORDER_ATOMIC) || "sample.csv";
             console.log('csv_file:', csv_file); // Add this line for debugging
 
-            var code = 'import pandas as pd\n' +
-                'df = pd.read_csv(' + csv_file + ')';
+            // var code = 'import pandas as pd\n' +
+            //     'df = pd.read_csv(' + csv_file + ')';
+            var code = `import pandas as pd\ndf = pd.read_csv('${csv_file}')`;
             return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
         };
 
@@ -439,7 +440,7 @@
     
         Blockly.JavaScript['Iris Dataset'] = function(block) {
             var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv'
-            return [csv_file, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+            return [csv_file, Blockly.JavaScript.ORDER_ATOMIC];
         };
 
         // Interact with Blockly (e.g., run code) --> future implementation 
