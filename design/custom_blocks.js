@@ -32,20 +32,58 @@ function updateCode(event) {
   
 workspace.addChangeListener(updateCode);
 
-// Blockly.Blocks['abs'] = {
+
+// SAMPLE
+
+// Blockly.Blocks['factorial'] = {
 //     init: function() {
-//       this.appendValueInput("VAR")
-//           .setCheck("var")
-//           .appendField("lam");
-//       this.appendValueInput("EXPR")
-//           .setCheck(["var", "exp", "Number"]);
+//         this.appendValueInput('NUM')
+//             .setCheck('Number')
+//             .appendField('Factorial of');
+//         this.setInputsInline(true);
+//         this.setOutput(true, 'Number');
+//         this.setColour(160);
+//         this.setTooltip('Calculates the factorial of a number');
+//         this.setHelpUrl('');
+//     }
+// };
+
+
+// Register the custom block in Blockly
+// Blockly.JavaScript['factorial'] = function(block) {
+// var num = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_NONE) || '1';
+// var code = 'factorial(' + num + ')';
+// return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+// };
+
+// END sample code block
+// Blockly.Blocks['read_csv'] = {
+//     init: function() {
+//       this.appendValueInput('FILENAME')
+//           .setCheck('String')
+//           .appendField('Read CSV from file');
+//       this.appendDummyInput()
+//           .appendField('and store it in variable');
+//       this.appendValueInput('VARIABLE')
+//           .setCheck('Variable')
+//           .appendField('');
 //       this.setInputsInline(true);
-//       this.setOutput(true, "exp");
-//       this.setColour(130);
-//       this.setTooltip("");
-//       this.setHelpUrl("");
+//       this.setPreviousStatement(true, null);
+//       this.setNextStatement(true, null);
+//       this.setColour(160);
+//       this.setTooltip('Reads data from a CSV file and stores it in a variable.');
+//       this.setHelpUrl('');
 //     }
 //   };
+  
+
+// Blockly.JavaScript['read_csv'] = function(block) {
+// var num = Blockly.JavaScript.valueToCode(block, 'NUM', Blockly.JavaScript.ORDER_NONE) || '1';
+// var code = 'import pandas as pd \n'
+// // code += 'factorial(' + num + ')';
+// return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+// };
+  
   
 //   Blockly.Blocks['app'] = {
 //     init: function() {

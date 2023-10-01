@@ -42,11 +42,12 @@
             <block type="evaluate_regression_model"></block>
             <block type="evaluate_classification_model"></block>
         </category>
+        
     </xml>
         <!-- Blockly workspace will go here -->
     <div id="blocklyDiv" style="height: 700px; width: 1200px;"></div> <!-- Blockly workspace container -->
     <div class="row button-row">
-        <button onclick="generateCode()">Generate Python</button>
+        <button id='generateButton' onclick="generateCode()">Generate Python</button>
         <button onclick="runCode()">Run Python</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
@@ -66,7 +67,9 @@
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
+            alert('Generated Blockly code:\n\n' + code);
         }
+
 
         function runCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -103,12 +106,19 @@
         }
 
         // Define custom blocks
+        Blockly.JavaScript['read_csv'] = function(block) {
+            var csv_file = Blockly.JavaScript.valueToCode(block, 'csv_file', Blockly.JavaScript.ORDER_NONE) || '';
+            var code = 'import pandas as pd;\n' +
+            'df = pd.read_csv(\'' + csv_file + '\');';
+            return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+        };
+
         // Define a custom block for reading CSV data
         Blockly.Blocks['read_csv'] = {
         init: function () {
             this.appendDummyInput()
                 .appendField("Read CSV from file")
-                .appendField(new Blockly.FieldTextInput("sample.csv"), "FILENAME");
+                .appendField(new Blockly.FieldTextInput("sample.csv"), 'csv_file');
             this.setOutput(true, "Array");
             this.setColour(210);
             this.setTooltip("Read CSV data from a file.");
@@ -116,6 +126,7 @@
         }
         };
 
+        
         // Define a custom block for printing CSV data
         Blockly.Blocks['print_data'] = {
         init: function () {
