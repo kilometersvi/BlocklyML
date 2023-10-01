@@ -331,3 +331,23 @@ Blockly.JavaScript['Iris Dataset'] = function(block) {
     var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv'
     return [csv_file, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
+// Define the custom block that will process inputing custom User Dataset
+Blockly.Blocks['Custom Dataset'] = {
+    init: function () {
+        this.appendDummyInput()
+            // .appendField("Custom Dataset")
+            .appendField(new Blockly.FieldTextInput('sample.csv'), 'csv_file')
+            .appendField('Dataset');
+        this.setOutput(true, "String");
+        this.setColour(210);
+        this.setTooltip("Custom CSV input");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['Custom Dataset'] = function(block) {
+    var csv_file = block.getFieldValue('csv_file');
+    var code = "'" + csv_file + "'";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
