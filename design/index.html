@@ -42,6 +42,10 @@
             <block type="evaluate_regression_model"></block>
             <block type="evaluate_classification_model"></block>
         </category>
+        <category name="Sample Datasets" colour="180">
+            <block type="Penguins Dataset"></block>
+            <block type="Iris Dataset"></block>
+        </category>
         
     </xml>
         <!-- Blockly workspace will go here -->
@@ -139,6 +143,14 @@
             this.setTooltip("Print the loaded CSV data.");
             this.setHelpUrl("");
         }
+        };
+
+        Blockly.JavaScript['print_data'] = function(block) {
+            // var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv';
+            // var code = 'import pandas as pd\n' +
+            // 'df = pd.read_csv(\'' + csv_file + '\')\n' +
+            var code = 'print(str(df.head()))';
+            return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
         };
 
         // Define a custom block for data normalization
@@ -390,6 +402,44 @@
                 this.setTooltip("Evaluate the performance of a classification model using Accuracy Score or Confusion Matrix.");
                 this.setHelpUrl("");
             }
+        };
+
+        //Define the custom block that will process inputting the Penguin Dataset
+        Blockly.Blocks['Penguins Dataset'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Penguins Dataset")
+            this.setOutput(true, "Array");
+            this.setColour(210);
+            this.setTooltip("Penguins Dataset");
+            this.setHelpUrl("");
+        }
+        };
+
+        // Define custom blocks
+        Blockly.JavaScript['Penguins Dataset'] = function(block) {
+            var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/penguins.csv'
+            var code = csv_file
+            return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+        };
+
+
+        //Define the custom block that will process inputting the Iris Dataset
+        Blockly.Blocks['Iris Dataset'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Iris Dataset")
+            this.setOutput(true, "Array");
+            this.setColour(210);
+            this.setTooltip("Iris Dataset");
+            this.setHelpUrl("");
+        }
+        };
+
+        Blockly.JavaScript['Iris Dataset'] = function(block) {
+            var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv'
+            var code = csv_file
+            return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
         };
 
         // Interact with Blockly (e.g., run code) --> future implementation 
