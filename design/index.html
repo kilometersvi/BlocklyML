@@ -115,7 +115,7 @@
                 this.appendValueInput('csv_file')
                     .setCheck('String') // Set the input type to "String"
                     .appendField("Read CSV from file");
-                this.setOutput(true, "Array");
+                this.setOutput(true, "String");
                 this.setColour(210);
                 this.setTooltip("Read CSV data from a file.");
                 this.setHelpUrl("");
@@ -137,10 +137,11 @@
         // Define a custom block for printing CSV data
         Blockly.Blocks['print_data'] = {
         init: function () {
-            this.appendValueInput("CSV_DATA")
-                .setCheck("Array")
+            this.appendValueInput("URL")
+                .setCheck("String")
                 .appendField("Print CSV Data");
             this.setPreviousStatement(true, null);
+            this.setOutput(true, "String");
             this.setNextStatement(true, null);
             this.setColour(210);
             this.setTooltip("Print the loaded CSV data.");
@@ -149,11 +150,10 @@
         };
 
         Blockly.JavaScript['print_data'] = function(block) {
-            // var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv';
-            // var code = 'import pandas as pd\n' +
-            // 'df = pd.read_csv(\'' + csv_file + '\')\n' +
-            var code = 'print(str(df.head()))';
-            return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+            var url = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+            var code = 'print(df)';
+
+            return code;
         };
 
         // Define a custom block for data normalization
