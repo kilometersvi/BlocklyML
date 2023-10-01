@@ -4,6 +4,7 @@
     <title>BlocklyML</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Blockly ML</h1>
@@ -57,6 +58,10 @@
     </div>
     <!-- s -->
     <script>
+        // Initialize Blockly
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox'), // Optional toolbox configuration
+        });
 
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -96,10 +101,6 @@
             };
             reader.readAsText(file);
         }
-        // Initialize Blockly
-        var workspace = Blockly.inject('blocklyDiv', {
-            toolbox: document.getElementById('toolbox'), // Optional toolbox configuration
-        });
 
         // Define custom blocks
         // Define a custom block for reading CSV data
