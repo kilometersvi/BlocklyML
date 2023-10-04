@@ -101,25 +101,4 @@ Decision Trees will be one of the classification models available in BlocklyML. 
 
 # Data and Interaction
 
-The user can provide the data using a CSV file, formatted such as this:
-
-
-HoursStudied, ExamScore
-
-2, 85
-
-3, 92
-
-1.5, 60
-
-4, 94
-
-5, 98
-
-2.5, 75
-
-1, 45
-
-3.5, 88
-
-4.5, 92
+The user can provide a GitHub link to a CSV file as their data to be formatted. Using the "Read CSV from file" block and the "sample.csv dataset" block, they can input a link to be read as a dataset. There will also be some default datasets provided for testing purposes, which currently include the Penguins and Iris datasets. From there, users will be able to interact with the data inputted and develop models and then visualization for their desired data.
