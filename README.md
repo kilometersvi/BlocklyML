@@ -1,7 +1,7 @@
 # BlocklyML
 
 ## GitHub-Pages URL
-https://a-rea.github.io/
+https://elawrie.github.io/BlocklyML/design-blocks/index.html
 
 ## Names of Group Members
 Evelyn Lawrie
