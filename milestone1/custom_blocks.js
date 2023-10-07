@@ -355,36 +355,92 @@ Blockly.Python['train_model'] = function(block) {
     return code;
 };
 
+// custom block for implementing the model prediction 
+Blockly.Blocks['predict_model'] = {
+    init: function () {
+      this.appendValueInput('MODEL')
+          .setCheck('Model') // Assuming 'Model' is a custom data type for your model variable.
+          .appendField("Predict with Model");
+      this.appendValueInput('DATA')
+          .setCheck(null) // Adjust the data type as needed.
+          .appendField("Input Data");
+      this.setOutput(true, 'Number'); // Output type can be 'Number' or another appropriate data type.
+      this.setColour(40);
+      this.setTooltip("Predict using the model");
+      this.setHelpUrl("");
+    }
+  };
+
+// implement python code for model prediction 
+Blockly.Python['predict_model'] = function (block) {
+    // var model = Blockly.Python.valueToCode(block, 'MODEL', Blockly.Python.ORDER_ATOMIC);
+    // var data = Blockly.Python.valueToCode(block, 'DATA', Blockly.Python.ORDER_ATOMIC);
+    var code = `model.predict(X_test)`;
+    return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
 // Define a custom block for evaluating the accuracy of regression models
 Blockly.Blocks['evaluate_regression_model'] = {
 init: function () {
-    this.appendValueInput("TRUE_LABELS")
-        .setCheck("Array")
+    this.appendValueInput("MODEL")
+        .setCheck("String")
         .appendField("Evaluate Regression Model Accuracy");
     this.appendDummyInput()
         .appendField("Using")
         .appendField(new Blockly.FieldDropdown([["Mean Squared Error (MSE)", "mse"], ["R-squared (R²)", "r2"]]), "METRIC");
-    this.setOutput(true, "Number");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    // this.setOutput(true, "Number");
     this.setColour(40);
     this.setTooltip("Evaluate the accuracy of a regression model using Mean Squared Error (MSE) or R-squared (R²).");
     this.setHelpUrl("");
 }
 };
 
+// implement regression model evaluation
+Blockly.Python['evaluate_regression_model'] = function(block) {
+    var metric = block.getFieldValue('METRIC');
+    // var model = block.getFieldValue('MODEL');
+    var imports = "from sklearn.metrics import mean_squared_error\nfrom sklearn.metrics import r2_score\n";
+    if (metric === "mse") {
+        var code = imports + "mse = mean_squared_error(y_test, y_pred)\nprint(f'Mean Squared Error on Test Data: {mse:.2f}')"
+    }
+    else {
+        var code = imports + "r2 = r2_score(y_test, y_pred)\nprint(f'R-squared (R2) Error: {r2:.2f}')"
+    }
+    return code;
+};
+
 // Define a custom block for evaluating the performance of classification models
 Blockly.Blocks['evaluate_classification_model'] = {
     init: function () {
-        this.appendValueInput("TRUE_LABELS")
-            .setCheck("Array")
-            .appendField("Evaluate Classification Model Performance");
+        this.appendValueInput("MODEL")
+            .setCheck("String")
+            .appendField("Evaluate Classification Model Accuracy");
         this.appendDummyInput()
             .appendField("Using")
             .appendField(new Blockly.FieldDropdown([["Accuracy Score", "accuracy"], ["Confusion Matrix", "confusion_matrix"]]), "METRIC");
-        this.setOutput(true, null);
+        // this.setOutput(true, "Number");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setColour(40);
         this.setTooltip("Evaluate the performance of a classification model using Accuracy Score or Confusion Matrix.");
         this.setHelpUrl("");
     }
+};
+
+// implement classification model evaluation
+Blockly.Python['evaluate_classification_model'] = function(block) {
+    var metric = block.getFieldValue('METRIC');
+    // var model = block.getFieldValue('MODEL');
+    var imports = "from sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix\n";
+    if (metric === "accuracy") {
+        var code = imports + "accuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy Score: {accuracy:.2f}')"
+    }
+    else {
+        var code = imports + "conf_matrix = confusion_matrix(y_test, y_pred)\nprint('Confusion Matrix:')\nprint(conf_matrix)"
+    }
+    return code;
 };
 
 //Define the custom block that will process inputting the Penguin Dataset
