@@ -226,6 +226,27 @@ init: function () {
 }
 };
 
+// Define custom block for target variable
+Blockly.Blocks['target_var'] = {
+    init: function () {
+        this.appendDummyInput('target_name')
+            .appendField("Target Variable:")
+            .appendField(new Blockly.FieldTextInput('column_name'), 'column_name')
+        this.setOutput(true, "String");
+        this.setColour(300);
+        this.setTooltip("Input column name");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Python['target_var'] = function(block) {
+    var columnName = block.getFieldValue('column_name'); // Get the 'column_name' value from the block
+
+    // Use the 'columnName' variable in your generated Python code
+    var code = `target = df_normalized['${columnName}']`;
+    return code;
+};
+
 // Define a custom block for choosing a regression model
 Blockly.Blocks['choose_regression_model'] = {
     init: function () {
