@@ -53,9 +53,11 @@
     <div class="row button-row">
         <button id='generateButton' onclick="generateCode()">Generate Python</button>
         <button onclick="runCode()">Run Python</button>
+        <button onclick="saveCode()">Save Code</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
+        
     </div>
     <div class="row">
         <div id="codeDiv" class="half-width"></div>
@@ -91,6 +93,15 @@
             var blob = new Blob([xmlText], {type: 'text/xml'});
             var a = document.createElement('a');
             a.download = 'blocks.xml';
+            a.href = URL.createObjectURL(blob);
+            a.click();
+        }
+
+        function saveCode() {
+            var code = Blockly.Python.workspaceToCode(workspace);
+            var blob = new Blob([code], { type: 'text/plain' });
+            var a = document.createElement('a');
+            a.download = 'code.py';
             a.href = URL.createObjectURL(blob);
             a.click();
         }
