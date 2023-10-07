@@ -18,7 +18,7 @@ Blockly.Python['read_csv'] = function(block) {
     var csv_file = Blockly.Python.valueToCode(block, 'csv_file', Blockly.Python.ORDER_ATOMIC) || "sample.csv";
 
     var code = `import pandas as pd\ndf = pd.read_csv('${csv_file}')`;
-    return code;
+    return [code, Blockly.Python.ORDER_NONE];
 };
 
 
@@ -79,11 +79,11 @@ sta = StandardScaler()
 ${generatedCode}
 
 numeric_cols = df.select_dtypes(include=['number'])
-df_normalized = pd.DataFrame(sta.fit_transform(df), columns=df.columns)
+df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
 print(df_normalized)
 `;
   
-    return code;
+    return code; 
   };
   
 
@@ -164,7 +164,7 @@ ${generatedCode}
 
 data = df_normalized[df_normalized.columns.difference([${selectedAttributes.split(',').map(attr => `'${attr.trim()}'`).join(', ')}])]
 `;
-    return code;
+    return [code, Blockly.Python.ORDER_NONE];
 };
     
 
@@ -235,24 +235,36 @@ init: function () {
 
 // Define a custom block for train-test split
 Blockly.Blocks['train_test_split'] = {
-init: function () {
-    this.appendValueInput("DATA")
-        .setCheck("Array")
-        .appendField("Train-Test Split");
-    this.appendDummyInput()
-        .appendField("Train Ratio:")
-        .appendField(new Blockly.FieldDropdown([
-        ["70%", "0.7"],
-        ["75%", "0.75"],
-        ["80%", "0.8"]
-        ]), "TRAIN_RATIO");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(300);
-    this.setTooltip("Split the input data into training and testing sets.");
-    this.setHelpUrl("");
-}
-};
+    init: function () {
+        this.appendValueInput("train_data")
+            .setCheck("String")
+            .appendField("Train-Test Split Data");
+        this.appendValueInput("target")
+            .setCheck("String")
+            .appendField("Target Variable");
+        this.appendDummyInput("ratio")
+            .appendField("Train Ratio:")
+            .appendField(new Blockly.FieldDropdown([
+            ["20%", "0.2"],
+            ["25%", "0.25"],
+            ["30%", "0.3"]
+            ]), "TRAIN_RATIO");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setOutput(true, "String")
+        this.setColour(300);
+        this.setTooltip("Split the input data into training and testing sets.");
+        this.setHelpUrl("");
+    }
+    };
+
+    Blockly.Python['train_test_split'] = function(block) {
+        var ratio = block.getFieldValue('TRAIN_RATIO');
+    
+        var code = `X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})`;
+        return [code, Blockly.Python.ORDER_ATOMIC];
+    };
+
 
 // Define custom block for target variable
 Blockly.Blocks['target_var'] = {
@@ -272,7 +284,7 @@ Blockly.Python['target_var'] = function(block) {
 
     // Use the 'columnName' variable in your generated Python code
     var code = `target = df_normalized['${columnName}']`;
-    return code;
+    return [code, Blockly.Python.ORDER_NONE];
 };
 
 // Define a custom block for choosing a regression model
