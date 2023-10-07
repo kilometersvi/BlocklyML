@@ -90,21 +90,32 @@ init: function () {
 // Define a custom block for creating a scatterplot
 Blockly.Blocks['scatterplot'] = {
 init: function () {
-    this.appendValueInput("DATA")
-        .setCheck("Array")
-        .appendField("Create Scatterplot");
+    this.appendDummyInput()
+        .appendField("Create Scatterplot")
+    // this.appendValueInput("DATA")
+    //     .setCheck("String")
+    //     .appendField("Create Scatterplot");
     this.appendDummyInput()
         .appendField("X-Axis:")
         .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
     this.appendDummyInput()
         .appendField("Y-Axis:")
         .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    // this.setPreviousStatement(true, null);
+    // this.setNextStatement(true, null);
+    this.setOutput(true, "String");
     this.setColour(270);
     this.setTooltip("Create a scatterplot from the input data.");
     this.setHelpUrl("");
 }
+};
+
+Blockly.Python['scatterplot'] = function(block) {
+    var x = block.getFieldValue('X_AXIS');
+    var y = block.getFieldValue('Y_AXIS');
+    // var df = block.getFieldValue('DATA');
+    var code = `(df, aes(x = '${x}', y = '${y}) + geom_point)`;
+    return [code, Blockly.Python.ORDER_ATOMIC]
 };
 
 // Define a custom block for creating a bar chart
