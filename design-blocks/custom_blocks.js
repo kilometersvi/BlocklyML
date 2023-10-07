@@ -14,12 +14,12 @@ Blockly.Blocks['read_csv'] = {
 };
 
 
-Blockly.JavaScript['read_csv'] = function(block) {
-    var csv_file = Blockly.JavaScript.valueToCode(block, 'csv_file', Blockly.JavaScript.ORDER_ATOMIC) || "sample.csv";
+Blockly.Python['read_csv'] = function(block) {
+    var csv_file = Blockly.Python.valueToCode(block, 'csv_file', Blockly.Python.ORDER_ATOMIC) || "sample.csv";
     console.log('csv_file:', csv_file); // Add this line for debugging
 
     var code = `import pandas as pd\ndf = pd.read_csv('${csv_file}')`;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+    return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 
@@ -38,8 +38,8 @@ init: function () {
 }
 };
 
-Blockly.JavaScript['print_data'] = function(block) {
-    var url = Blockly.JavaScript.valueToCode(block, 'URL', Blockly.JavaScript.ORDER_ATOMIC);
+Blockly.Python['print_data'] = function(block) {
+    var url = Blockly.Python.valueToCode(block, 'URL', Blockly.Python.ORDER_ATOMIC);
     var code = `${url}\nprint(df)`;
 
     return code;
@@ -308,9 +308,9 @@ Blockly.Blocks['Penguins Dataset'] = {
     }
 };
 
-Blockly.JavaScript['Penguins Dataset'] = function(block) {
+Blockly.Python['Penguins Dataset'] = function(block) {
     var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/penguins.csv';
-    return [csv_file, Blockly.JavaScript.ORDER_ATOMIC];
+    return [csv_file, Blockly.Python.ORDER_ATOMIC];
 };
 
 
@@ -327,9 +327,9 @@ init: function () {
 }
 };
 
-Blockly.JavaScript['Iris Dataset'] = function(block) {
+Blockly.Python['Iris Dataset'] = function(block) {
     var csv_file = 'https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv'
-    return [csv_file, Blockly.JavaScript.ORDER_ATOMIC];
+    return [csv_file, Blockly.Python.ORDER_ATOMIC];
 };
 
 // Define the custom block that will process inputing custom User Dataset
@@ -346,8 +346,8 @@ Blockly.Blocks['Custom Dataset'] = {
     }
 };
 
-Blockly.JavaScript['Custom Dataset'] = function(block) {
+Blockly.Python['Custom Dataset'] = function(block) {
     var csv_file = block.getFieldValue('csv_file');
     var code = "'" + csv_file + "'";
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+    return [code, Blockly.Python.ORDER_ATOMIC];
 };

@@ -3,6 +3,7 @@
 <head>
     <title>BlocklyML</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed"></script>
     <script src="custom_blocks.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -68,14 +69,14 @@
         });
 
         function generateCode() {
-            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            var code = Blockly.Python.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
-            alert('Generated Blockly code:\n\n' + code);
+            // alert('Generated Blockly code:\n\n' + code);
         }
 
 
         function runCode() {
-            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            var code = Blockly.Python.workspaceToCode(workspace);
             try {
                 var output = eval(code);
                 document.getElementById('outputDiv').innerText = output;
