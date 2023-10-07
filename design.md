@@ -35,9 +35,6 @@
 ## Train the Model
 - Train function (model.fit(train_data)) from Scikit-Learn on the selected model 
 
-## Hyperparameter Selection
-- Allow users to choose values for the hyperparameters of their choice to improve the accuracy of the model they selected
-
 ## Model Evaluation
 - Use model evaluation methods to show users the statistical output of their models
 - Continuous: 

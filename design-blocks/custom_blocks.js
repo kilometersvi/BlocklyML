@@ -216,54 +216,6 @@ init: function () {
 }
 };
 
-// Define a custom block for hyperparameter tuning using GridSearchCV
-Blockly.Blocks['hyperparameter_tuning'] = {
-init: function () {
-    this.appendDummyInput()
-        .appendField("Set Hyperparameters for Model:");
-    this.appendValueInput("MODEL")
-        .setCheck("String");
-    this.appendStatementInput("HYPERPARAMETERS")
-        .setCheck(null)
-        .appendField("Hyperparameters:");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(30);
-    this.setTooltip("Set hyperparameter values for a machine learning model.");
-    this.setHelpUrl("");
-}
-};
-
-// Define a custom block for setting a hyperparameter and its value
-Blockly.Blocks['set_hyperparameter'] = {
-init: function () {
-this.appendDummyInput()
-    .appendField("Set")
-    .appendField(new Blockly.FieldTextInput("hyperparameter_name"), "HYPERPARAMETER_NAME")
-    .appendField("to");
-this.appendValueInput("VALUE")
-    .setCheck("Number");
-this.setPreviousStatement(true, null);
-this.setNextStatement(true, null);
-this.setColour(30);
-this.setTooltip("Set the value of a hyperparameter for the model.");
-this.setHelpUrl("");
-}
-};
-
-// Define a custom block for specifying the numeric value of a hyperparameter
-Blockly.Blocks['hyperparameter_value'] = {
-init: function () {
-this.appendDummyInput()
-    .appendField("Hyperparameter Value:")
-    .appendField(new Blockly.FieldNumber(0), "VALUE");
-this.setOutput(true, "Number");
-this.setColour(30);
-this.setTooltip("Specify the numeric value of a hyperparameter.");
-this.setHelpUrl("");
-}
-};
-
 // Define a custom block for evaluating the accuracy of regression models
 Blockly.Blocks['evaluate_regression_model'] = {
 init: function () {
