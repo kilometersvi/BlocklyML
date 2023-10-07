@@ -243,43 +243,43 @@ Blockly.Blocks['choose_regression_model'] = {
     }
     };
     
-    // implement regression model selection
-    Blockly.Python['choose_regression_model'] = function(block) {
-        var model = block.getFieldValue('REGRESSION_MODEL');
-        var imports = "from sklearn.linear_model import LinearRegression\nfrom sklearn.tree import DecisionTreeRegressor\nfrom sklearn.ensemble import RandomForestRegressor\n";
-        code = imports + "model = " + model + "()\n"
-        return [code, Blockly.Python.ORDER_ATOMIC];
-    };
-    
-    // Define a custom block for choosing a classification model
-    Blockly.Blocks['choose_classification_model'] = {
-    init: function () {
-        this.appendDummyInput()
-            .appendField("Choose Classification Model:")
-            .appendField(new Blockly.FieldDropdown([
-            ["Logistic Regression", "LogisticRegression"],
-            ["K-Nearest Neighbors", "KNeighborsClassifier"],
-            ["Decision Trees", "DecisionTreeClassifier"]
-            ]), "CLASSIFICATION_MODEL");
-        this.setOutput(true, "String");
-        this.setColour(330);
-        this.setTooltip("Select a classification model for your machine learning task.");
-        this.setHelpUrl("");
+// implement regression model selection
+Blockly.Python['choose_regression_model'] = function(block) {
+    var model = block.getFieldValue('REGRESSION_MODEL');
+    var imports = "from sklearn.linear_model import LinearRegression\nfrom sklearn.tree import DecisionTreeRegressor\nfrom sklearn.ensemble import RandomForestRegressor\n";
+    code = imports + "model = " + model + "()\n"
+    return code;
+};
+
+// Define a custom block for choosing a classification model
+Blockly.Blocks['choose_classification_model'] = {
+init: function () {
+    this.appendDummyInput()
+        .appendField("Choose Classification Model:")
+        .appendField(new Blockly.FieldDropdown([
+        ["Logistic Regression", "LogisticRegression"],
+        ["K-Nearest Neighbors", "KNeighborsClassifier"],
+        ["Decision Trees", "DecisionTreeClassifier"]
+        ]), "CLASSIFICATION_MODEL");
+    this.setOutput(true, "String");
+    this.setColour(330);
+    this.setTooltip("Select a classification model for your machine learning task.");
+    this.setHelpUrl("");
+}
+};
+
+// implement classification model selection
+Blockly.Python['choose_classification_model'] = function(block) {
+    var model = block.getFieldValue('CLASSIFICATION_MODEL');
+    var imports = "from sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.tree import DecisionTreeClassifier\n";
+    if (model === 'KNeighborsClassifier') {
+        var code = imports + "model = " + model + "(n_neighbors=5)\n";
     }
-    };
-    
-    // implement classification model selection
-    Blockly.Python['choose_classification_model'] = function(block) {
-        var model = block.getFieldValue('CLASSIFICATION_MODEL');
-        var imports = "from sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.tree import DecisionTreeClassifier\n";
-        if (model === 'KNeighborsClassifier') {
-            code = imports + "model = " + model + "(n_neighbors=5)\n";
-        }
-        else {
-            code = imports + "model = " + model + "()\n";
-        }
-        return [code, Blockly.Python.ORDER_ATOMIC];
-    };
+    else {
+        var code = imports + "model = " + model + "()\n";
+    }
+    return code;
+};
 
 // Define a custom block for training a machine learning model
 Blockly.Blocks['train_model'] = {
@@ -288,7 +288,7 @@ init: function () {
         .setCheck("String")
         .appendField("Train Model");
     this.appendValueInput("TRAIN_DATA")
-        .setCheck("Array")
+        .setCheck("String")
         .appendField("Training Data");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -296,6 +296,14 @@ init: function () {
     this.setTooltip("Train a selected machine learning model with the provided training data.");
     this.setHelpUrl("");
 }
+};
+
+// implement model training
+Blockly.Python['train_model'] = function(block) {
+    // var model = block.getFieldValue('MODEL');
+    // var trainData = block.getFieldValue('TRAIN_DATA');
+    var code = "model.fit(x_train, y_train)";
+    return code;
 };
 
 // Define a custom block for hyperparameter tuning using GridSearchCV
