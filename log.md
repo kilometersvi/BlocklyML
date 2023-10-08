@@ -1,7 +1,7 @@
 # How we divided up work
 Explain how you divided the work between group members
 
-Since we are using Blockly for this project, we decided to distribute each section of blocks to each person. People in the group who are most familiar with Machine Learning concepts were assigned the more complicated blocks to implement.
+Since we are using Blockly for this project, we decided to distribute a section of blocks to each person. People in the group who are most familiar with Machine Learning concepts were assigned the more complicated blocks to implement.
 
 Minna was assigned the "Clean Data" section.
 
@@ -14,4 +14,4 @@ Minna:
 
 # Our use of AI 
 
-We mainly used AI to help debug errors that we weren't able to understand. Creating and putting together blocks required us to make sure that each block was accepting and outputting the correct types. AI was able to help us identify potential errors in data types.
+We mainly used AI to help debug errors that we weren't able to understand. When creating and putting blocks together, we encountered issues that concerned our blocks' input and output data types. AI was able to help identify aspects of our code that were causing these linking issues. We also used AI to verify if the generated Python code is correct and makes sense in the context of Machine Learning.
