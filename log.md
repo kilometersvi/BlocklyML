@@ -9,9 +9,13 @@ Minna was assigned the "Clean Data" section. Evelyn completed the "Model Selecti
 Minna: 
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
+- [README.md](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md)
 Evelyn:
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
+Alex:
+- [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
+- [README.md](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md)
 
 # Our use of AI 
 
