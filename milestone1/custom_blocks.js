@@ -17,7 +17,7 @@ Blockly.Blocks['read_csv'] = {
 Blockly.Python['read_csv'] = function(block) {
     var csv_file = Blockly.Python.valueToCode(block, 'csv_file', Blockly.Python.ORDER_ATOMIC) || "sample.csv";
 
-    var code = `import pandas as pd\ndf = pd.read_csv('${csv_file}')`;
+    var code = `import pandas as pd\ndf = pd.read_csv('${csv_file}')`.replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_NONE];
 };
 
@@ -38,7 +38,7 @@ init: function () {
 
 Blockly.Python['print_data'] = function(block) {
     var url = Blockly.Python.valueToCode(block, 'URL', Blockly.Python.ORDER_ATOMIC);
-    var code = `${url}\nprint(df)`;
+    var code = `${url}\nprint(df)`.replace(/^\s+/gm, '');
 
     return code;
 };
@@ -159,7 +159,7 @@ Blockly.Python['attribute_selection'] = function (block) {
     var code = `
 ${generatedCode}
 data = df[[${selectedAttributes.split(',').map(attr => `'${attr.trim()}'`).join(', ')}]]
-`;
+`.replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_NONE];
 };
     
@@ -189,7 +189,7 @@ Blockly.Python['scatterplot'] = function(block) {
     var x = block.getFieldValue('X_AXIS');
     var y = block.getFieldValue('Y_AXIS');
     
-    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_point())`;
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_point())`.replace(/^\s+/gm, '');
     return readCsvBlock ? code : `# no dataframe inputted`;
 };
 
@@ -219,7 +219,7 @@ Blockly.Python['bar_chart'] = function(block) {
     var x = block.getFieldValue('X_AXIS');
     var y = block.getFieldValue('Y_AXIS');
 
-    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_bar(stat = 'identity'))`;
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_bar(stat = 'identity'))`.replace(/^\s+/gm, '');
     return readCsvBlock ? code : `# no dataframe inputted`;
 }
 
@@ -271,10 +271,9 @@ Blockly.Blocks['train_test_split'] = {
 
         // Python code for data normalization using StandardScaler
         var code = `
-            ${generatedCode}
-            ${generatedCode2}
-            X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})
-        `.replace(/^\s+/gm, '');
+        ${generatedCode}
+        ${generatedCode2}
+        X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})`.replace(/^\s+/gm, '');
         return [code, Blockly.Python.ORDER_ATOMIC];
     };
 
@@ -296,7 +295,7 @@ Blockly.Python['target_var'] = function(block) {
     var columnName = block.getFieldValue('column_name'); // Get the 'column_name' value from the block
 
     // Use the 'columnName' variable in your generated Python code
-    var code = `target = df['${columnName}']`;
+    var code = `target = df['${columnName}']`.replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_NONE];
 };
 
@@ -347,10 +346,10 @@ Blockly.Python['choose_classification_model'] = function(block) {
     var model = block.getFieldValue('CLASSIFICATION_MODEL');
     var imports = "from sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.tree import DecisionTreeClassifier\n";
     if (model === 'KNeighborsClassifier') {
-        var code = imports + "model = " + model + "(n_neighbors=5)\n";
+        var code = imports + "model = " + model + "(n_neighbors=5)\n".replace(/^\s+/gm, '');
     }
     else {
-        var code = imports + "model = " + model + "()\n";
+        var code = imports + "model = " + model + "()\n".replace(/^\s+/gm, '');
     }
     return code;
 };
@@ -402,7 +401,7 @@ Blockly.Python['train_model'] = function(block) {
     ${generatedCode}
     ${generatedCode2}
     model.fit(X_train, y_train)
-    `.replace(/^\s+/gm, '');
+    `.replace(/^\s+/gm, '')
     return code;
 };
 
@@ -420,7 +419,8 @@ Blockly.Blocks['predict_model'] = {
 
 // implement python code for model prediction 
 Blockly.Python['predict_model'] = function (block) {
-    var code = `y_pred = model.predict(X_test)`.replace(/^\s+/gm, '');
+    var code = `
+    y_pred = model.predict(X_test)`.replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
@@ -456,10 +456,10 @@ Blockly.Python['evaluate_regression_model'] = function(block) {
     }
     var imports = "from sklearn.metrics import mean_squared_error\nfrom sklearn.metrics import r2_score\n";
     if (metric === "mse") {
-        var code = `${generatedCode}\n` + imports + "mse = mean_squared_error(y_test, y_pred)\nprint(f'Mean Squared Error on Test Data: {mse:.2f}')"
+        var code = `${generatedCode}\n` + imports + "mse = mean_squared_error(y_test, y_pred)\nprint(f'Mean Squared Error on Test Data: {mse:.2f}')".replace(/^\s+/gm, '')
     }
     else {
-        var code = `${generatedCode}\n` + imports + "r2 = r2_score(y_test, y_pred)\nprint(f'R-squared (R2) Error: {r2:.2f}')"
+        var code = `${generatedCode}\n` + imports + "r2 = r2_score(y_test, y_pred)\nprint(f'R-squared (R2) Error: {r2:.2f}')".replace(/^\s+/gm, '')
     }
     return code;
 };
@@ -496,10 +496,10 @@ Blockly.Python['evaluate_classification_model'] = function(block) {
     }
     var imports = "from sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix\n";
     if (metric === "accuracy") {
-        var code = `${generatedCode}\n` + imports + "accuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy Score: {accuracy:.2f}')"
+        var code = `${generatedCode}\n` + imports + "accuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy Score: {accuracy:.2f}')".replace(/^\s+/gm, '')
     }
     else {
-        var code = `${generatedCode}\n` + imports + "conf_matrix = confusion_matrix(y_test, y_pred)\nprint('Confusion Matrix:')\nprint(conf_matrix)"
+        var code = `${generatedCode}\n` + imports + "conf_matrix = confusion_matrix(y_test, y_pred)\nprint('Confusion Matrix:')\nprint(conf_matrix)".replace(/^\s+/gm, '')
     }
     return code;
 };
@@ -556,6 +556,6 @@ Blockly.Blocks['Custom Dataset'] = {
 
 Blockly.Python['Custom Dataset'] = function(block) {
     var csv_file = block.getFieldValue('csv_file');
-    var code = "'" + csv_file + "'";
+    var code = "'" + csv_file + "'".replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
