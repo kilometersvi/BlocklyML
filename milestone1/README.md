@@ -33,8 +33,10 @@
 ## Model Evaluation
 **10. Select Evaluation Corresponding to your Model's Type**
 - In the **Model Evaluation** tab select the appropriate model evaluation block that corresponds to your model's type. For example, if you made a linear regression, choose the **Evaluate Regression Model Accuracy Using __** block. Attach this **Evaluate Model Accuracy** block below the model training block.
+
 **11. Making Predictions Using the Test Data**
 - In this same Model Evaluation tab select the, select the **Predict with Model** block and drop that into the empty slot of the **Evaluate Model Accuracy** from the previous step. 
+
 **12. Selecting accuracy metric**
 - In the **Evaluate Model Accuracy** block from step 10, there is a dropdown that lets you choose what metric will be used to evaluate your model's performance. Select whichever desired metric.
 
