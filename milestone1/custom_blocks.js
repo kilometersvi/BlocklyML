@@ -271,9 +271,10 @@ Blockly.Blocks['train_test_split'] = {
 
         // Python code for data normalization using StandardScaler
         var code = `
-        ${generatedCode}
-        ${generatedCode2}
-        X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})`;
+            ${generatedCode}
+            ${generatedCode2}
+            X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})
+        `.replace(/^\s+/gm, '');
         return [code, Blockly.Python.ORDER_ATOMIC];
     };
 
@@ -401,7 +402,7 @@ Blockly.Python['train_model'] = function(block) {
     ${generatedCode}
     ${generatedCode2}
     model.fit(X_train, y_train)
-    `
+    `.replace(/^\s+/gm, '');
     return code;
 };
 
@@ -419,8 +420,7 @@ Blockly.Blocks['predict_model'] = {
 
 // implement python code for model prediction 
 Blockly.Python['predict_model'] = function (block) {
-    var code = `
-    y_pred = model.predict(X_test)`;
+    var code = `y_pred = model.predict(X_test)`.replace(/^\s+/gm, '');
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
