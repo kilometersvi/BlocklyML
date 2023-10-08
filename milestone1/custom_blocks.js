@@ -80,6 +80,7 @@ ${generatedCode}
 numeric_cols = df.select_dtypes(include=['number'])
 df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
 print(df_normalized)
+df[df_normalized.columns] = df_normalized
 `;
   
     return [code, Blockly.Python.ORDER_ATOMIC]; 
@@ -117,7 +118,7 @@ Blockly.Python['drop_nulls'] = function (block) {
     var code = `
 ${generatedCode}
 
-df_normalized = df_normalized.dropna()
+df = df.dropna()
 `;
   
     return [code, Blockly.Python.ORDER_NONE];
@@ -157,8 +158,7 @@ Blockly.Python['attribute_selection'] = function (block) {
     var selectedAttributes = block.getFieldValue('SELECTED_ATTRIBUTES');
     var code = `
 ${generatedCode}
-
-data = df_normalized[df_normalized.columns.difference([${selectedAttributes.split(',').map(attr => `'${attr.trim()}'`).join(', ')}])]
+data = df[[${selectedAttributes.split(',').map(attr => `'${attr.trim()}'`).join(', ')}]]
 `;
     return [code, Blockly.Python.ORDER_NONE];
 };
@@ -301,7 +301,7 @@ Blockly.Python['target_var'] = function(block) {
     var columnName = block.getFieldValue('column_name'); // Get the 'column_name' value from the block
 
     // Use the 'columnName' variable in your generated Python code
-    var code = `target = df_normalized['${columnName}']`;
+    var code = `target = df['${columnName}']`;
     return [code, Blockly.Python.ORDER_NONE];
 };
 
@@ -406,7 +406,7 @@ Blockly.Python['train_model'] = function(block) {
     var code = `
     ${generatedCode}
     ${generatedCode2}
-    model.fit(x_train, y_train)
+    model.fit(X_train, y_train)
     `
     return code;
 };
@@ -426,7 +426,7 @@ Blockly.Blocks['predict_model'] = {
 // implement python code for model prediction 
 Blockly.Python['predict_model'] = function (block) {
     var code = `
-    model.predict(X_test)`;
+    y_pred = model.predict(X_test)`;
     return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
