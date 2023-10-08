@@ -15,9 +15,6 @@ Minna:
 Evelyn:
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
-Alex: 
-- [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
-- [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
 
 # Our use of AI 
 
