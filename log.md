@@ -1,14 +1,15 @@
 # How we divided up work
-Explain how you divided the work between group members
 
 Since we are using Blockly for this project, we decided to distribute each section of blocks to each person. People in the group who are most familiar with Machine Learning concepts were assigned the more complicated blocks to implement.
 
-Minna was assigned the "Clean Data" section.
+Minna was assigned the "Clean Data" section. Evelyn completed the "Model Selection," "Model Training," and "Model Evaluation" sections. 
 
 # Links to each group member's work 
-Each group member should have one or more links to the files that contain the respective work
 
 Minna: 
+- [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
+- [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
+Evelyn:
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
 
