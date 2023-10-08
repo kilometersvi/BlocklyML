@@ -59,8 +59,7 @@ init: function () {
 // Generate code for data normalization
 Blockly.Python['normalize_data'] = function (block) {
     // Get the 'read_csv' block
-    var readCsvBlock = workspace.getBlockById('read_csv'); // Replace 'your_block_id' with the actual block ID
-
+    var readCsvBlock = block.getInputTargetBlock('DATA');
     if (readCsvBlock) {
         // Retrieve the generated Python code from the block
         var generatedCode = Blockly.Python.blockToCode(readCsvBlock);
@@ -83,7 +82,7 @@ df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_co
 print(df_normalized)
 `;
   
-    return code; 
+    return [code, Blockly.Python.ORDER_ATOMIC]; 
   };
   
 
@@ -102,7 +101,7 @@ init: function () {
 
 Blockly.Python['drop_nulls'] = function (block) {
     // Get the 'read_csv' block
-    var readNormalizedData = workspace.getBlockById('normalize_data'); // Replace 'your_block_id' with the actual block ID
+    var readNormalizedData = block.getInputTargetBlock('DATA');
 
     if (readNormalizedData) {
         // Retrieve the generated Python code from the block
@@ -134,7 +133,7 @@ Blockly.Blocks['attribute_selection'] = {
             .appendField("Attributes:")
             .appendField(new Blockly.FieldTextInput("attr1,attr2"), "SELECTED_ATTRIBUTES");
         this.setOutput(true, "String");
-        this.setColour(240);
+        this.setColour('green');
         this.setTooltip("Select specific attributes from the input array.");
         this.setHelpUrl("");
     }
