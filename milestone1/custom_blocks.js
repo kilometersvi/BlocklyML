@@ -72,18 +72,18 @@ Blockly.Python['normalize_data'] = function (block) {
 
     // Python code for data normalization using StandardScaler
     var code = `
-from sklearn.preprocessing import StandardScaler
-sta = StandardScaler()
+        from sklearn.preprocessing import StandardScaler
+        sta = StandardScaler()
 
-${generatedCode}
+        ${generatedCode}
 
-numeric_cols = df.select_dtypes(include=['number'])
-df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
-print(df_normalized)
-df[df_normalized.columns] = df_normalized
-`;
+        numeric_cols = df.select_dtypes(include=['number'])
+        df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
+        print(df_normalized)
+        df[df_normalized.columns] = df_normalized
+    `.replace(/^\s+/gm, '');
   
-    return [code, Blockly.Python.ORDER_ATOMIC]; 
+    return [code, Blockly.Python.ORDER_ATOMIC] 
   };
   
 
@@ -116,10 +116,10 @@ Blockly.Python['drop_nulls'] = function (block) {
 
     // Python code for data normalization using StandardScaler
     var code = `
-${generatedCode}
+        ${generatedCode}
 
-df = df.dropna()
-`;
+        df = df.dropna()
+    `.replace(/^\s+/gm, '');
   
     return [code, Blockly.Python.ORDER_NONE];
   };
@@ -163,15 +163,42 @@ data = df[[${selectedAttributes.split(',').map(attr => `'${attr.trim()}'`).join(
     return [code, Blockly.Python.ORDER_NONE];
 };
     
-
 // Define a custom block for creating a scatterplot
 Blockly.Blocks['scatterplot'] = {
+    init: function () {
+        this.appendValueInput("DATA")
+            .setCheck("String")
+            .appendField("Create Scatterplot");
+        this.appendDummyInput()
+            .appendField("X-Axis:")
+            .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
+        this.appendDummyInput()
+            .appendField("Y-Axis:")
+            .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
+        // this.setPreviousStatement(true, null);
+        // this.setNextStatement(true, null);
+        this.setColour(270);
+        this.setTooltip("Create a scatterplot from the input data.");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Python['scatterplot'] = function(block) {
+    var readCsvBlock = block.getInputTargetBlock('DATA');
+    var df = Blockly.Python.blockToCode(readCsvBlock)[0];
+    var x = block.getFieldValue('X_AXIS');
+    var y = block.getFieldValue('Y_AXIS');
+    
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_point())`;
+    return readCsvBlock ? code : `# no dataframe inputted`;
+};
+
+// Define a custom block for creating a bar chart
+Blockly.Blocks['bar_chart'] = {
 init: function () {
-    this.appendDummyInput()
-        .appendField("Create Scatterplot")
-    // this.appendValueInput("DATA")
-    //     .setCheck("String")
-    //     .appendField("Create Scatterplot");
+    this.appendValueInput("DATA")
+        .setCheck("String")
+        .appendField("Create Bar Chart");
     this.appendDummyInput()
         .appendField("X-Axis:")
         .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
@@ -180,54 +207,21 @@ init: function () {
         .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
     // this.setPreviousStatement(true, null);
     // this.setNextStatement(true, null);
-    this.setOutput(true, "String");
-    this.setColour(270);
-    this.setTooltip("Create a scatterplot from the input data.");
-    this.setHelpUrl("");
-}
-};
-
-Blockly.Python['scatterplot'] = function(block) {
-    var x = block.getFieldValue('X_AXIS');
-    var y = block.getFieldValue('Y_AXIS');
-    // var df = block.getFieldValue('DATA');
-    var code = `(df, aes(x = '${x}', y = '${y}) + geom_point)`;
-    return [code, Blockly.Python.ORDER_ATOMIC]
-};
-
-// Define a custom block for creating a bar chart
-Blockly.Blocks['bar_chart'] = {
-init: function () {
-    this.appendValueInput("DATA")
-        .setCheck("Array")
-        .appendField("Create Bar Chart");
-    this.appendDummyInput()
-        .appendField("X-Axis:")
-        .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
-    this.appendDummyInput()
-        .appendField("Y-Axis:")
-        .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
     this.setColour(270);
     this.setTooltip("Create a bar chart from the input data.");
     this.setHelpUrl("");
 }
 };
 
-// Define a custom block for creating a correlation heatmap
-Blockly.Blocks['correlation_heatmap'] = {
-init: function () {
-    this.appendValueInput("DATA")
-        .setCheck("Array")
-        .appendField("Create Correlation Heatmap");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(270);
-    this.setTooltip("Create a correlation heatmap from the input data.");
-    this.setHelpUrl("");
+Blockly.Python['bar_chart'] = function(block) {
+    var readCsvBlock = block.getInputTargetBlock('DATA');
+    var df = Blockly.Python.blockToCode(readCsvBlock)[0];
+    var x = block.getFieldValue('X_AXIS');
+    var y = block.getFieldValue('Y_AXIS');
+
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_bar(stat = 'identity'))`;
+    return readCsvBlock ? code : `# no dataframe inputted`;
 }
-};
 
 // Define a custom block for train-test split
 Blockly.Blocks['train_test_split'] = {
