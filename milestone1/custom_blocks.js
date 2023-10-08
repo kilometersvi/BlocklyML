@@ -72,18 +72,18 @@ Blockly.Python['normalize_data'] = function (block) {
 
     // Python code for data normalization using StandardScaler
     var code = `
-from sklearn.preprocessing import StandardScaler
-sta = StandardScaler()
+        from sklearn.preprocessing import StandardScaler
+        sta = StandardScaler()
 
-${generatedCode}
+        ${generatedCode}
 
-numeric_cols = df.select_dtypes(include=['number'])
-df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
-print(df_normalized)
-df[df_normalized.columns] = df_normalized
-`;
+        numeric_cols = df.select_dtypes(include=['number'])
+        df_normalized = pd.DataFrame(sta.fit_transform(numeric_cols), columns=numeric_cols.columns)
+        print(df_normalized)
+        df[df_normalized.columns] = df_normalized
+    `.replace(/^\s+/gm, '');
   
-    return [code, Blockly.Python.ORDER_ATOMIC]; 
+    return [code, Blockly.Python.ORDER_ATOMIC] 
   };
   
 
@@ -116,10 +116,10 @@ Blockly.Python['drop_nulls'] = function (block) {
 
     // Python code for data normalization using StandardScaler
     var code = `
-${generatedCode}
+        ${generatedCode}
 
-df = df.dropna()
-`;
+        df = df.dropna()
+    `.replace(/^\s+/gm, '');
   
     return [code, Blockly.Python.ORDER_NONE];
   };
