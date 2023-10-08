@@ -2,14 +2,20 @@
 
 Since we are using Blockly for this project, we decided to distribute a section of blocks to each person. People in the group who are most familiar with Machine Learning concepts were assigned the more complicated blocks to implement.
 
-Minna was assigned the "Clean Data" section. Evelyn completed the "Model Selection," "Model Training," and "Model Evaluation" sections. 
+Chris was assigned the "Data Visualization" section. Minna was assigned the "Clean Data" section. Evelyn completed the "Model Selection," "Model Training," and "Model Evaluation" sections. 
 
 # Links to each group member's work 
 
+Chris: 
+- [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
+- [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
 Minna: 
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
 Evelyn:
+- [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
+- [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
+Alex: 
 - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
 - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
 
