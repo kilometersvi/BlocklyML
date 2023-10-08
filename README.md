@@ -1,8 +1,7 @@
 # BlocklyML
 
 ## GitHub-Pages URL
-https://elawrie.github.io/BlocklyML/design-blocks/index.html
-
+https://elawrie.github.io/BlocklyML/milestone1/index.html
 ## Names of Group Members
 Evelyn Lawrie
 
