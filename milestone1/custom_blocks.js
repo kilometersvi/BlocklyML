@@ -140,11 +140,8 @@ Blockly.Blocks['attribute_selection'] = {
     };
     
 Blockly.Python['attribute_selection'] = function (block) {
-    // Get the value of the "DATA" input
-    var inputData = Blockly.Python.valueToCode(block, 'DATA', Blockly.Python.ORDER_ATOMIC);
-
     // Get the 'normalize_data' block
-    var readDroppedNullData = workspace.getBlockById('drop_nulls'); // Replace 'your_block_id' with the actual block ID
+    var readDroppedNullData = block.getInputTargetBlock('DATA');
 
     if (readDroppedNullData) {
         // Retrieve the generated Python code from the block
