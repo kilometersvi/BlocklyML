@@ -31,6 +31,7 @@
 ## Model Selection 
 **7. Select model type**
 - In this step, decide whether you want to work with a classification or regression model (with classification being for categorical predictions and regression being numeric-based prediction), and select the block inside the **Model Selection** tab accordingly.
+
 **8. Using Dropdown for Specific Model**
 - From either the classification or regression block you selected, click the dropdown menu to select which specific model you want.
 
