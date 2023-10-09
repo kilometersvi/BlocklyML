@@ -21,17 +21,17 @@
 - The next step is to drop our entries with null values to create a cleaner dataset. This is done by attaching the previous blocks to the **'Drop Null Values From Array'** in the **'Clean Data'** section.
 
 **5. Selecting Vectors to Make predictions from dataset**
-- Finally, to make our prediction, we must use the **'Select Attributes from Array'** block in the **'Clean Data'** section. Input the previous chained together blocks into the first empty slot of this block and type comma-separated attributes we want to use from our dataset into the string input to serve as the independent variables used to predict on our target/dependent variable. To see what variables you can choose from, the link to the penguins dataset is found here (https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/penguins.csv) and the iris dataset is found here (https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv). 
+- Finally, to make our prediction, we must use the **'Select Attributes from Array'** block in the **'Clean Data'** section. Input the previous chained-together blocks into the first empty slot of this block and type comma-separated attributes we want to use from our dataset into the string input to serve as the independent variables used to predict on our target/dependent variable. To see what variables you can choose from, the link to the Penguins dataset is found [here](https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/penguins.csv) and the iris dataset is found [here](https://raw.githubusercontent.com/cmparlettpelleriti/CPSC392ParlettPelleriti/master/Data/iris.csv). 
 
 ## Train-Test Split
 **6. Splitting the data and target vectors**
-- Slide the selected attributes block (containing everything from previous steps) into the left most opening of the **'Train-Test Split Data'** block. Then, in the next open slot of the train test split block, type in what target variable you want to predict. Finally, from the dropdown, select what you want the size of the test split to be. That is, if you select 25%, then 25% of your entire dataset will be designated to be in the test set used for validation.
+- Slide the selected attributes block (containing everything from previous steps) into the leftmost opening of the **'Train-Test Split Data'** block. Then, in the next open slot of the train test split block, type in what target variable you want to predict. Finally, from the dropdown, select what you want the size of the test split to be. That is, if you select 25%, then 25% of your entire dataset will be designated to be in the test set used for validation.
 
 ## Model Selection 
 **7. Select model type**
-- In this step, decide whether you want to work with a classification or regression model (with classification being for categorical predictions and regression being numeric based prediction), and select the block inside the **Model Selection** tab accordingly.
+- In this step, decide whether you want to work with a classification or regression model (with classification being for categorical predictions and regression being numeric-based prediction), and select the block inside the **Model Selection** tab accordingly.
 **8. Using Dropdown for Specific Model**
-- From either the classificaiton or regression block you selected, click the dropdown menu to select which specific model you want.
+- From either the classification or regression block you selected, click the dropdown menu to select which specific model you want.
 
 ## Model Training
 **9. Piecing the Split Data and the Model Selected**
@@ -42,18 +42,18 @@
 - In the **Model Evaluation** tab select the appropriate model evaluation block that corresponds to your model's type. For example, if you made a linear regression, choose the **Evaluate Regression Model Accuracy Using __** block. Attach this **Evaluate Model Accuracy** block below the model training block.
 
 **11. Making Predictions Using the Test Data**
-- In this same Model Evaluation tab select the, select the **Predict with Model** block and drop that into the empty slot of the **Evaluate Model Accuracy** from the previous step. 
+- In this same **Model Evaluation** tab, select the **Predict with Model** block and drop that into the empty slot of the **Evaluate Model Accuracy** from the previous step. 
 
 **12. Selecting accuracy metric**
-- In the **Evaluate Model Accuracy** block from step 10, there is a dropdown that lets you choose what metric will be used to evaluate your model's performance. Select whichever desired metric.
+- In the **Evaluate Model Accuracy** block from step 10, there is a dropdown that lets you choose what metric will be used to evaluate your model's performance. Select the desired metric.
 
 
 # Directions for Testing Milestone
-**1. Start by follwing the Directions for Running Milestone to even create a model**
-- Create a model given the instructions Directions for Running Milestone.
+**1. Start by following the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/edit/main/milestone1/README.md#directions-for-running-milestone) to create a model**
+- Create a model given the instructions in the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/edit/main/milestone1/README.md#directions-for-running-milestone).
 
-**2. Hit the save code button which will download a python file**
-- Hitting the save code button will give you a python file which can all be pasted into a jupyter notebook or Google Colab code cell. 
+**2. Save code with the **'Save Code'** button to download Python file**
+- Clicking the **'Save Code'** button will download a Python file containing the generated code, which can be pasted into a Jupyter notebook or Google Colab code cell to be executed. 
 
 **3. Running the Code**
-- The pasted code in the code cells will have a run button. Click this and it should print the performance of your model at the bottom.
+- The pasted code in the code cells will be accompanied by a 'Run' button. Clicking this button should display the performance of your model at the bottom.
