@@ -2,7 +2,7 @@
 
 Since we are using Blockly for this project, we decided to distribute a section of blocks to each person. People in the group who are most familiar with Machine Learning concepts were assigned the more complicated blocks to implement.
 
-Chris was assigned the "Data Visualization" section. Minna was assigned the "Clean Data" section. Evelyn completed the "Model Selection," "Model Training," and "Model Evaluation" sections. 
+For Milestone 1, Chris completed the blocks for the "Data Visualization" section. Minna completed the blocks for "Clean Data" section. Evelyn completed the blocks for the "Model Selection," "Model Training," and "Model Evaluation" sections. Everyone contributed to the README.md.
 
 # Links to each group member's work 
 
