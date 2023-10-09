@@ -49,8 +49,8 @@
 
 
 # Directions for Testing Milestone
-**1. Start by following the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/edit/main/milestone1/README.md#directions-for-running-milestone) to create a model**
-- Create a model given the instructions in the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/edit/main/milestone1/README.md#directions-for-running-milestone).
+**1. Start by following the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md#directions-for-running-milestone) to create a model**
+- Create a model given the instructions in the [Directions for Running Milestone](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md#directions-for-running-milestone).
 
 **2. Save code with the **'Save Code'** button to download Python file**
 - Clicking the **'Save Code'** button will download a Python file containing the generated code, which can be pasted into a Jupyter notebook or Google Colab code cell to be executed. 
