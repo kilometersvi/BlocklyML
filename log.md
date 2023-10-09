@@ -6,17 +6,17 @@ Chris was assigned the "Data Visualization" section. Minna was assigned the "Cle
 
 # Links to each group member's work 
 
-- Chris: 
+Chris: 
  - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
  - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
-- Minna: 
+Minna: 
  - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
  - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
  - [README.md](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md)
-- Evelyn:
+Evelyn:
  - [index.html](https://github.com/elawrie/BlocklyML/blob/main/milestone1/index.html)
  - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
-- Alex:
+Alex:
  - [custom_blocks.js](https://github.com/elawrie/BlocklyML/blob/main/milestone1/custom_blocks.js)
  - [README.md](https://github.com/elawrie/BlocklyML/blob/main/milestone1/README.md)
 
