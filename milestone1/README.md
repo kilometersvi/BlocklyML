@@ -61,5 +61,5 @@
 - The pasted code in the code cells will be accompanied by a 'Run' button. Clicking this button should display the performance of your model at the bottom.
 
 **Example image of what Blocks might look like:**
-- ![first block example](https://imgur.com/abA9dS5)
-- ![second block example](https://imgur.com/gMTV8TA)
+![first block example](https://imgur.com/abA9dS5)
+![second block example](https://imgur.com/gMTV8TA)
