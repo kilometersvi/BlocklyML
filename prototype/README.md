@@ -1,0 +1,2 @@
+`prototype/README.md` needs to contain reproducible instructions on how to test the software and how to recreate the demo that you will present.
+The slides that you use for your presentation will be linked from `prototype/README.md`. 
