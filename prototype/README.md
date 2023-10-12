@@ -1,3 +1,6 @@
+# Link to Midterm Presentation
+https://docs.google.com/presentation/d/14_vS54JWUf9wMg_RiC7GbPkN3oRTnWiqIhMfZN63u1c/edit?usp=sharing
+
 # Directions for Running Prototype 
 ## Inputting Data
 **1. Start with a dataset block**
