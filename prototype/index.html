@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BlocklyML</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed"></script>
+    <script src="custom_blocks.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Blockly ML</h1>
+    <xml id="toolbox" style="display: none">
+        <category name="Input Data" colour="210">
+            <block id="read_csv" type="read_csv"></block>
+            <block type="print_data"></block>
+            <block type="Penguins Dataset"></block>
+            <block type="Iris Dataset"></block>
+            <block type="Custom Dataset"></block>
+        </category>
+        <category name="Data Visualizations" colour="240">
+            <block type="scatterplot"></block>
+            <block type="bar_chart"></block>
+        </category>
+        <category name="Clean Data" colour="270">
+            <block id="normalize_data" type="normalize_data"></block>
+            <block id="drop_nulls" type="drop_nulls"></block>
+            <block type="attribute_selection"></block>
+        </category>
+        <category name="Train/Test Split" colour="300">
+            <block type="train_test_split"></block>
+            <block type="target_var"></block>
+        </category>
+        <category name="Model Selection" colour="330">
+            <block type="choose_regression_model"></block>
+            <block type="choose_classification_model"></block>
+        </category>
+        <category name="Model Training" colour="360">
+            <block type="train_model"></block>
+        </category>
+        <category name="Model Evaluation" colour="390">
+            <block type="predict_model"></block>
+            <block type="evaluate_regression_model"></block>
+            <block type="evaluate_classification_model"></block>
+        </category>
+        
+    </xml>
+        <!-- Blockly workspace will go here -->
+    <div id="blocklyDiv" style="height: 900px; width: 1500px;"></div> <!-- Blockly workspace container -->
+    <div class="row button-row">
+        <button id='generateButton' onclick="generateCode()">Generate Python</button>
+        <!-- <button onclick="runCode()">Run Python</button> -->
+        <button onclick="saveCode()">Save Code</button>
+        <button onclick="saveBlocks()">Save Blocks</button>
+        <button onclick="loadBlocks()">Load Blocks</button>
+        <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
+        
+    </div>
+    <div class="row">
+        <div id="codeDiv" class="half-width"></div>
+        <div id="outputDiv" class="half-width"></div>
+    </div>
+    <!-- s -->
+    <script>
+        // Initialize Blockly
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox'), // Optional toolbox configuration
+        });
+
+        function generateCode() {
+            var code = Blockly.Python.workspaceToCode(workspace);
+            document.getElementById('codeDiv').innerText = code;
+            // alert('Generated Blockly code:\n\n' + code);
+        }
+
+
+        function runCode() {
+            var code = Blockly.Python.workspaceToCode(workspace);
+            try {
+                var output = eval(code);
+                document.getElementById('outputDiv').innerText = output;
+            } catch (e) {
+                document.getElementById('outputDiv').innerText = 'Error: ' + e;
+            }
+        }
+
+        function saveBlocks() {
+            var xml = Blockly.Xml.workspaceToDom(workspace);
+            var xmlText = Blockly.Xml.domToPrettyText(xml);
+            var blob = new Blob([xmlText], {type: 'text/xml'});
+            var a = document.createElement('a');
+            a.download = 'blocks.xml';
+            a.href = URL.createObjectURL(blob);
+            a.click();
+        }
+
+        function saveCode() {
+            var code = Blockly.Python.workspaceToCode(workspace);
+            var blob = new Blob([code], { type: 'text/plain' });
+            var a = document.createElement('a');
+            a.download = 'code.py';
+            a.href = URL.createObjectURL(blob);
+            a.click();
+        }
+
+        function loadBlocks() {
+            document.getElementById('loadInput').click();
+        }
+
+        function loadBlocksFile(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var xml = Blockly.utils.xml.textToDom(e.target.result);
+                Blockly.Xml.appendDomToWorkspace(xml, workspace);
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
