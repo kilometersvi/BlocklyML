@@ -271,6 +271,7 @@ Blockly.Blocks['train_test_split'] = {
         var code = `
         ${generatedCode}
         ${generatedCode2}
+        from sklearn.model_selection import train_test_split\n
         X_train, X_test, y_train, y_test = train_test_split(data,target, test_size = ${ratio})`.replace(/^\s+/gm, '');
         return [code, Blockly.Python.ORDER_ATOMIC];
     };
