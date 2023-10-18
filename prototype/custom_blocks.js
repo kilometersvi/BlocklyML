@@ -122,7 +122,7 @@ Blockly.Python['drop_nulls'] = function (block) {
     `.replace(/^\s+/gm, '');
   
     return [code, Blockly.Python.ORDER_NONE];
-  };
+};
 
 // Define a custom block for selecting attributes
 Blockly.Blocks['attribute_selection'] = {
@@ -138,7 +138,7 @@ Blockly.Blocks['attribute_selection'] = {
         this.setTooltip("Select specific attributes from the input array.");
         this.setHelpUrl("");
     }
-    };
+};
     
 Blockly.Python['attribute_selection'] = function (block) {
     // Get the 'normalize_data' block
@@ -170,11 +170,26 @@ Blockly.Blocks['scatterplot'] = {
             .setCheck("String")
             .appendField("Create Scatterplot");
         this.appendDummyInput()
-            .appendField("X-Axis:")
+            .appendField("X-Axis (Continuous):")
             .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
         this.appendDummyInput()
-            .appendField("Y-Axis:")
+            .appendField("Y-Axis (Continuous):")
             .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
+        this.appendDummyInput()
+            .appendField("Color (Categorical):")
+            .appendField(new Blockly.FieldTextInput("none"), "Z_AXIS");
+        this.appendDummyInput()
+            .appendField("Theme:")
+                .appendField(new Blockly.FieldDropdown([
+                    ['Gray', 'gray'],
+                    ['Black & White', 'bw'],
+                    ['Line Drawing', 'linedraw'],
+                    ['Light', 'light'],
+                    ['Dark', 'dark'],
+                    ['Minimal', 'minimal'],
+                    ['Classic', 'classic'],
+                    ['Void', 'void']
+                ]), 'THEME');
         // this.setPreviousStatement(true, null);
         // this.setNextStatement(true, null);
         this.setColour(270);
@@ -188,8 +203,10 @@ Blockly.Python['scatterplot'] = function(block) {
     var df = Blockly.Python.blockToCode(readCsvBlock)[0];
     var x = block.getFieldValue('X_AXIS');
     var y = block.getFieldValue('Y_AXIS');
+    var z = block.getFieldValue('Z_AXIS');
+    var theme = block.getFieldValue('THEME');
     
-    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_point())`.replace(/^\s+/gm, '');
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}'${z == "none" ? '' : `, color = '${z}'`})) + geom_point() + theme_${theme}())`.replace(/^\s+/gm, '');
     return readCsvBlock ? code : `# no dataframe inputted`;
 };
 
@@ -200,11 +217,23 @@ init: function () {
         .setCheck("String")
         .appendField("Create Bar Chart");
     this.appendDummyInput()
-        .appendField("X-Axis:")
+        .appendField("X-Axis (Categorical):")
         .appendField(new Blockly.FieldTextInput("x"), "X_AXIS");
     this.appendDummyInput()
-        .appendField("Y-Axis:")
+        .appendField("Y-Axis (Continuous):")
         .appendField(new Blockly.FieldTextInput("y"), "Y_AXIS");
+    this.appendDummyInput()
+        .appendField("Theme:")
+            .appendField(new Blockly.FieldDropdown([
+                ['Gray', 'gray'],
+                ['Black & White', 'bw'],
+                ['Line Drawing', 'linedraw'],
+                ['Light', 'light'],
+                ['Dark', 'dark'],
+                ['Minimal', 'minimal'],
+                ['Classic', 'classic'],
+                ['Void', 'void']
+            ]), 'THEME');
     // this.setPreviousStatement(true, null);
     // this.setNextStatement(true, null);
     this.setColour(270);
@@ -218,8 +247,9 @@ Blockly.Python['bar_chart'] = function(block) {
     var df = Blockly.Python.blockToCode(readCsvBlock)[0];
     var x = block.getFieldValue('X_AXIS');
     var y = block.getFieldValue('Y_AXIS');
+    var theme = block.getFieldValue('THEME');
 
-    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}')) + geom_bar(stat = 'identity'))`.replace(/^\s+/gm, '');
+    var code = `from plotnine import *\n${df}\n(ggplot(df, aes(x = '${x}', y = '${y}', fill = '${x}')) + geom_bar(stat = 'identity') + theme_${theme}())`.replace(/^\s+/gm, '');
     return readCsvBlock ? code : `# no dataframe inputted`;
 }
 
