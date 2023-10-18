@@ -239,8 +239,6 @@ Blockly.Blocks['train_test_split'] = {
             ["25%", "0.25"],
             ["30%", "0.3"]
             ]), "TRAIN_RATIO");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
         this.setOutput(true, "String")
         this.setColour(300);
         this.setTooltip("Split the input data into training and testing sets.");
