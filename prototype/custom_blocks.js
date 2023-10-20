@@ -523,12 +523,12 @@ Blockly.Python['evaluate_classification_model'] = function(block) {
     } else {
         console.log('Block not found');
     }
-    var imports = "from sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix\n";
+    var imports = "from sklearn.metrics import accuracy_score\nfrom sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay\n";
     if (metric === "accuracy") {
         var code = `${generatedCode}\n` + imports + "accuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy Score: {accuracy:.2f}')".replace(/^\s+/gm, '')
     }
     else {
-        var code = `${generatedCode}\n` + imports + "conf_matrix = confusion_matrix(y_test, y_pred)\nprint('Confusion Matrix:')\nprint(conf_matrix)".replace(/^\s+/gm, '')
+        var code = `${generatedCode}\n` + imports + "print('Confusion Matrix:')\nConfusionMatrixDisplay.from_predictions(y_test, y_pred)".replace(/^\s+/gm, '')
     }
     return code;
 };
