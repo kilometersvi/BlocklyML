@@ -1,4 +1,4 @@
-# BlocklyML Setup Guide
+# BlocklyML Setup Instructions
 
 Welcome to the documentation for BlocklyML! This document will guide you through the steps to test and run the source code.
 
