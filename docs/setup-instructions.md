@@ -79,7 +79,15 @@ To run the modified BlocklyML project on an AWS EC2 instance, you will need to f
 4. **Configure Instance Details** as needed for your application.
 5. **Add Storage** if the default storage size is not sufficient for your needs.
 6. **Add Tags** to help organize and manage the instance.
-7. **Configure Security Group** to set up the firewall rules. Ensure that at least port 80 (HTTP) and port 22 (SSH) are open.
+7. **Configure Security Group** to set up the firewall rules. Make sure to add rules for the following:
+
+    SSH (Secure Shell) - Port 22: Allow SSH access to manage the instance remotely. (should be in default new security group when making new EC2)
+    HTTP (Hypertext Transfer Protocol) - Port 80: Allow web traffic to your Flask application. Set the following:
+        Type: HTTP
+        Protocol: TCP
+        Port Range: 80
+        Source: 0.0.0.0/0 (for public access) or your specific IP address (for restricted access).
+   
 8. **Review and Launch** the instance.
 9. **Create a new key pair** or select an existing one, and download it. This key pair will be used to SSH into the instance. Without a key pair, AWS will not let you SSH. If creating a new keypair, you will need to run `chmod 400 keypair.pem`
 
