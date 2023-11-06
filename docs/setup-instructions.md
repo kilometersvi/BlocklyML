@@ -109,6 +109,11 @@ To run the modified BlocklyML project on an AWS EC2 instance, you will need to f
    sudo usermod -a -G docker $USER
    ```
    You may need to log out and log back in for the group change to take effect.
+4. **Install Git** on the EC2 instance:
+   ```sh
+   sudo yum install git  # For Amazon Linux
+   sudo apt install git  # For Ubuntu
+   ```
 
 ### Step 4: Deploy the Application
 
