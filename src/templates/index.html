@@ -50,6 +50,7 @@
         <button id='generateButton' onclick="generateCode()">Generate Python</button>
         <!-- <button onclick="runCode()">Run Python</button> -->
         <button onclick="saveCode()">Save Code</button>
+        <button id="runPython" onclick="runPythonCode()">Run Python</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
@@ -72,6 +73,33 @@
             // alert('Generated Blockly code:\n\n' + code);
         }
 
+        function runPythonCode() {
+
+            var pythonCode = Blockly.Python.workspaceToCode(workspace);
+
+            // send the Python code to the Flask server using AJAX
+            fetch('/run_python', {
+                method: 'POST',
+                body: JSON.stringify({ code: pythonCode }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var outputDiv = document.getElementById('outputDiv');
+                if(data.success) {
+                    // todo: use multithreading & concurrent networking to output current terminal in outputdiv, rather than just dump it all once exec terminates
+                    outputDiv.innerText = 'Python code executed successfully:\n' + data.result;
+                } else {
+                    outputDiv.innerText = 'Error executing Python code:\n' + data.error;
+                }
+            })
+            .catch(error => {
+                var outputDiv = document.getElementById('outputDiv');
+                outputDiv.innerText = 'Error sending Python code to the server:\n' + error;
+            });
+        }
 
         function runCode() {
             var code = Blockly.Python.workspaceToCode(workspace);
